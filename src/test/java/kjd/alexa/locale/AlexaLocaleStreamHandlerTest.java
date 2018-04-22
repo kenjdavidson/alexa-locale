@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 import com.amazon.ask.Skill;
 
 @RunWith(JUnit4.class)
-public class LocaleStreamHandlerTest {
+public class AlexaLocaleStreamHandlerTest {
 
 	private Skill skill;
 	

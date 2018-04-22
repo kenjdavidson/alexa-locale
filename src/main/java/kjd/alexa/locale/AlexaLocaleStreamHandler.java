@@ -6,7 +6,7 @@ import com.amazon.ask.builder.CustomSkillBuilder;
 
 import kjd.alexa.locale.handler.LaunchRequestHandler;
 
-public class LocaleStreamHandler extends SkillStreamHandler {
+public class AlexaLocaleStreamHandler extends SkillStreamHandler {
 
 	private static Skill getSkill() {
 		return new CustomSkillBuilder()
@@ -15,7 +15,7 @@ public class LocaleStreamHandler extends SkillStreamHandler {
 				.build();
 	}
 	
-	public LocaleStreamHandler() {
+	public AlexaLocaleStreamHandler() {
 		super(getSkill());
 	}
 

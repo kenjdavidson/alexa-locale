@@ -1,0 +1,14 @@
+{
+	"interactionModel": {
+		"languageModel": {
+			"invocationName": "local lambda",
+			"intents": [{
+		          	"name": "AMAZON.LaunchIntent",
+		          	"samples": []
+		        }],
+			"types": []
+		}
+	},
+	"dialogs": {},
+	"prompts": []
+}
