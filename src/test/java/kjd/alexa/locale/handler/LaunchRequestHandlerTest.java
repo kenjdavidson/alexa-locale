@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.mockito.Mockito;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.LaunchRequest;
@@ -19,7 +18,6 @@ import com.amazon.ask.model.Response;
 public class LaunchRequestHandlerTest {
 	
 	private LaunchRequestHandler launch;
-	private LaunchRequestHandler launchMock;
 	
 	private LaunchRequest getLocaledLaunchRequest(String locale) {
 		return LaunchRequest.builder()
@@ -44,7 +42,6 @@ public class LaunchRequestHandlerTest {
 	@Before
 	public void before() {
 		this.launch = new LaunchRequestHandler();
-		this.launchMock = Mockito.mock(LaunchRequestHandler.class);
 	}
 	
 	@Test

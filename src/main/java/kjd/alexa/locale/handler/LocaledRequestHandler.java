@@ -9,19 +9,18 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
+import kjd.alexa.locale.annotation.ResourceBase;
+
 /**
  * Base {@link RequestHandler} used to provided {@link Locale} based {@link ResourceBundle}
- * customized {@link Response}(s). 
+ * customized {@link Response}(s).  {@link ResourceBundle}(s) are not required, but default
+ * values should be provided, as no {@link MissingResourceException} is thrown.
+ * <p> 
  * 
  * @author kendavidson
  *
  */
 public abstract class LocaledRequestHandler implements RequestHandler {
-	
-	/**
-	 * System environment property name used to specify 
-	 */
-	private static final String RESOURCE_ENV = "resources.bundleBase";
 	
 	/**
 	 * Base name used to load {@link ResourceBundle} objects.
@@ -33,9 +32,22 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 	 * base name.
 	 */
 	public LocaledRequestHandler() {
-		this.bundleBase = Optional
-				.ofNullable(System.getenv(RESOURCE_ENV))
-				.orElse(bundleBase);
+		this.bundleBase = initializeResourceFile().orElse(this.bundleBase);
+	}
+	
+	/**
+	 * Initialize the {@link ResourceBundle} baseName.
+	 * @return
+	 */
+	private Optional<String> initializeResourceFile() {
+		String base = null;
+		
+		if (this.getClass().isAnnotationPresent(ResourceBase.class)) {
+			ResourceBase annotation = this.getClass().getAnnotation(ResourceBase.class);
+			base = annotation.value();
+		}
+		
+		return Optional.ofNullable(base);
 	}
 
 	@Override
@@ -60,6 +72,6 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 	 * @param rb
 	 * @return
 	 */
-	protected abstract Optional<Response> handleRequest(HandlerInput intput, ResourceBundle rb);	
+	protected abstract Optional<Response> handleRequest(HandlerInput input, ResourceBundle rb);	
 	
 }

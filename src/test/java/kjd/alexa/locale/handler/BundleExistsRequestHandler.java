@@ -7,46 +7,47 @@ import java.util.ResourceBundle;
 import org.apache.commons.lang3.Validate;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
-import com.amazon.ask.request.Predicates;
+
+import kjd.alexa.locale.annotation.ResourceBase;
 
 /**
- * Provides handling of Launch Intents from Alexa.  Attempts to lookup the {@code welcome}
- * resource; if it doesn't exist then a default English welcome is provided.
- * <p>
- * 
+ * Test - {@link ResourceBundle} "kjd.alexa.locale.handler.annotated" exists.
  * @author kendavidson
  *
  */
-public class LaunchRequestHandler extends LocaledRequestHandler {
+@ResourceBase("kjd.alexa.locale.handler.annotated")
+public class BundleExistsRequestHandler extends LocaledRequestHandler {
 
 	@Override
 	public boolean canHandle(HandlerInput input) {
-		return input.matches(Predicates.requestType(LaunchRequest.class));
+		return true;
 	}
 
 	@Override
 	protected Optional<Response> handleRequest(HandlerInput input, ResourceBundle rb) {
-		String speech = getLocaleSpeech(input, rb);
+		String speech = (rb == null)
+				? getDefaultSpeech(input) 
+				: getLocaleSpeech(input, rb);
 		return input.getResponseBuilder()
 				.withSpeech(speech)
 				.withReprompt(speech)
 				.withSimpleCard("Locale Testing", speech)
 				.build();
 	}
-	
+
 	private String getDefaultSpeech(HandlerInput input) {
-		return "Welcome to the Alexa locale skill, you can't do much.";
+		return "Resource not found.";
 	}
 	
 	private String getLocaleSpeech(HandlerInput input, ResourceBundle rb) {
 		Validate.notNull(rb);
 		
 		try {
-			return rb.getString("welcome");
+			return rb.getString("hello");
 		} catch (MissingResourceException ignored) { }
 		
 		return getDefaultSpeech(input);
-	}
+	}	
+	
 }
