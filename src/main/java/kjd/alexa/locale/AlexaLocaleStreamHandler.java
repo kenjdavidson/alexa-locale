@@ -18,5 +18,5 @@ public class AlexaLocaleStreamHandler extends SkillStreamHandler {
 	public AlexaLocaleStreamHandler() {
 		super(getSkill());
 	}
-
+	
 }

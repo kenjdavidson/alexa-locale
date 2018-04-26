@@ -18,4 +18,8 @@ public class AlexaLocaleStreamHandlerTest {
 		skill = Mockito.mock(Skill.class);
 	}
 	
+	@Test
+	public void no_tests_required_extending_SkillsStreamHandler() {
+		// Passed 
+	}
 }

@@ -16,7 +16,7 @@ import kjd.alexa.locale.annotation.ResourceBase;
  * @author kendavidson
  *
  */
-@ResourceBase("kjd.alexa.locale.handler.annotated")
+@ResourceBase("messages.annotated")
 public class BundleExistsRequestHandler extends LocaledRequestHandler {
 
 	@Override
