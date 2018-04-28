@@ -1,10 +1,7 @@
 package kjd.alexa.locale.handler;
 
-import java.util.MissingResourceException;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import org.apache.commons.lang3.Validate;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.LaunchRequest;
