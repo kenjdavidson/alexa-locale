@@ -12,6 +12,7 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
 import kjd.alexa.locale.annotation.LocaleResourceBase;
+import kjd.alexa.util.JsonUtils;
 import lombok.Getter;
 
 /**
@@ -37,11 +38,17 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 	private String bundleBase = this.getClass().getCanonicalName();
 	
 	/**
+	 * Json Utils
+	 */
+	private JsonUtils json;
+	
+	/**
 	 * Creates a new {@link LocaledRequestHandler} setting the {@link ResourceBundle}
 	 * base name.
 	 */
 	public LocaledRequestHandler() {
-		this.bundleBase = initializeResourceFile().orElse(this.bundleBase);	
+		this.bundleBase = initializeResourceFile().orElse(this.bundleBase);
+		logger.debug("Using resource bundle base " + this.bundleBase);
 	}
 	
 	/**
@@ -62,14 +69,19 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
 		String[] localeStrings = input.getRequestEnvelope().getRequest().getLocale().split("_");
+		String requestId = input.getRequestEnvelope().getRequest().getRequestId();		
+		logger.debug(String.format("Handling input request %s with RequestEnvelope: %s", 
+				requestId, new String(json.serialize(input.getRequestEnvelope()))));
+		
 		Locale requestLocale = new Locale(localeStrings[0], localeStrings[1]);
+		logger.debug(String.format("Handling input request %s with Locale %s",
+				requestId, requestLocale.toString()));
 		
 		ResourceBundle rb = null;
 		try {
-			rb = ResourceBundle.getBundle(bundleBase, requestLocale, this.getClass().getClassLoader());
-			
-			logger.info(String.format("Handling input %s using ResourceBundle %s", 
-					input.getRequestEnvelope().getRequest().getType(), rb.getBaseBundleName()));
+			rb = ResourceBundle.getBundle(bundleBase, requestLocale, this.getClass().getClassLoader());			
+			logger.debug(String.format("Handling input %s using ResourceBundle %s", 
+					requestId, rb.getBaseBundleName()));			
 		} catch(MissingResourceException ignored) {	
 			logger.warn(String.format("Unable to find ResourceBundle %s_%s", 
 					this.bundleBase, requestLocale.toString()));
