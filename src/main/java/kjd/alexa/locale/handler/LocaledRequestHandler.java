@@ -14,12 +14,37 @@ import com.amazon.ask.model.Response;
 import kjd.alexa.locale.annotation.LocaleResourceBase;
 import kjd.alexa.util.JsonUtils;
 import lombok.Getter;
+import lombok.extern.log4j.Log4j;
 
 /**
  * Base {@link RequestHandler} used to provided {@link Locale} based {@link ResourceBundle}
- * customized {@link Response}(s).  {@link ResourceBundle}(s) are not required, but default
+ * customization in {@link Response}(s).  {@link ResourceBundle}(s) are not required, but default
  * values should be provided, as no {@link MissingResourceException} is thrown.
  * <p> 
+ * {@link ResourceBundle}(s) require a resource base (filename prefix) when attempting to load, this
+ * can be configured by using the {@code @ResourceBundleBase} annotation.  Without the
+ * annotation, the full class name will be used (requiring the locale file to be within the same
+ * class path.
+ * <p>
+ * A default {@link Log4j} logger is available with a default setting of WARN.  The logger 
+ * settings can be overwritten by providing a custom properties file and using the 
+ * environment variable {@code -Dlog4j.configuration=<config-file>} as described in the Log4j
+ * documentation.
+ * <p>
+ * An basic extending class only needs to implement the {@link #handleRequest(HandlerInput, ResourceBundle)}
+ * method:
+ * <pre><code>
+ * 	protected Optional<Response> handleRequest(HandlerInput input, ResourceBundle rb) {
+ * 		String speech = getMessage(rb, 
+ * 			"welcome", 
+ * 			"Welcome to the Alexa locale skill.");
+ * 		return input.getResponseBuilder()
+ * 			.withSpeech(speech)
+ * 			.withReprompt(speech)
+ * 			.withSimpleCard("Hello", speech)
+ * 			.build();
+ * 	}
+ * </code></pre>
  * 
  * @author kendavidson
  *
