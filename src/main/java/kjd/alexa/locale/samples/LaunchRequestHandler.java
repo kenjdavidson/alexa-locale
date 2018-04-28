@@ -1,4 +1,4 @@
-package kjd.alexa.locale.handler;
+package kjd.alexa.locale.samples;
 
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -7,6 +7,8 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.request.Predicates;
+
+import kjd.alexa.locale.handler.LocaledRequestHandler;
 
 /**
  * Provides handling of Launch Intents from Alexa.  Attempts to lookup the {@code welcome}

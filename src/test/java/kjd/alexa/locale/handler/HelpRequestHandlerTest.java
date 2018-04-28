@@ -15,6 +15,8 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 
+import kjd.alexa.locale.samples.HelpRequestHandler;
+
 @RunWith(JUnit4.class)
 public class HelpRequestHandlerTest {
 	

@@ -13,6 +13,8 @@ import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 
+import kjd.alexa.locale.samples.LaunchRequestHandler;
+
 @RunWith(JUnit4.class)
 public class LaunchRequestHandlerTest {
 	
