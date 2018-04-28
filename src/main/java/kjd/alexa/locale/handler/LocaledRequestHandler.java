@@ -35,11 +35,13 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 	/**
 	 * Base name used to load {@link ResourceBundle} objects.
 	 */
+	@Getter
 	private String bundleBase = this.getClass().getCanonicalName();
 	
 	/**
 	 * Json Utils
 	 */
+	@Getter
 	private JsonUtils json;
 	
 	/**
@@ -49,6 +51,9 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 	public LocaledRequestHandler() {
 		this.bundleBase = initializeResourceFile().orElse(this.bundleBase);
 		logger.debug("Using resource bundle base " + this.bundleBase);
+		
+		json = JsonUtils.builder()
+				.build();
 	}
 	
 	/**

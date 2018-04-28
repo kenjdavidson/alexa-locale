@@ -37,12 +37,12 @@ public class JsonUtils {
 		}
 	}
 	
-	public JsonUtilsBuilder builder() {
+	public static JsonUtilsBuilder builder() {
 		return new JsonUtilsBuilder(new ObjectMapper());
 	}
 	
 	@SuppressWarnings("unused")
-	private class JsonUtilsBuilder {
+	public static class JsonUtilsBuilder {
 		private ObjectMapper mapper;
 		
 		private JsonUtilsBuilder(ObjectMapper mapper) {
