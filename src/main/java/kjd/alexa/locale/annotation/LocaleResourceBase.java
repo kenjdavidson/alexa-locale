@@ -32,7 +32,7 @@ import kjd.alexa.locale.handler.LocaledRequestHandler;
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
-public @interface ResourceBase {
+public @interface LocaleResourceBase {
 
 	/**
 	 * Sets the baseName

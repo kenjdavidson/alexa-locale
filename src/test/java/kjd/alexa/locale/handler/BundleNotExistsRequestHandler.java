@@ -9,7 +9,7 @@ import org.apache.commons.lang3.Validate;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 
-import kjd.alexa.locale.annotation.ResourceBase;
+import kjd.alexa.locale.annotation.LocaleResourceBase;
 
 /**
  * Test - {@link ResourceBundle} "annotated" doesn't exist.
@@ -17,7 +17,7 @@ import kjd.alexa.locale.annotation.ResourceBase;
  * @author kendavidson
  *
  */
-@ResourceBase("annotated")
+@LocaleResourceBase("annotated")
 public class BundleNotExistsRequestHandler extends LocaledRequestHandler {
 
 	@Override

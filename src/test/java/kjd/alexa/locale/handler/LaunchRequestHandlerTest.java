@@ -1,6 +1,5 @@
 package kjd.alexa.locale.handler;
 
-import java.time.OffsetDateTime;
 import java.util.Optional;
 
 import org.junit.Assert;
@@ -19,21 +18,20 @@ public class LaunchRequestHandlerTest {
 	
 	private LaunchRequestHandler launch;
 	
-	private LaunchRequest getLocaledLaunchRequest(String locale) {
+	public static LaunchRequest getLocaledLaunchRequest(String locale) {
 		return LaunchRequest.builder()
 				.withRequestId("requestId")
 				.withLocale(locale)
-				.withTimestamp(OffsetDateTime.now())
 				.build();
 	}
 	
-	private RequestEnvelope getLocaledRequest(String locale) {
+	public static RequestEnvelope getLocaledRequest(String locale) {
 		return RequestEnvelope.builder()
 				.withRequest(getLocaledLaunchRequest(locale))
 				.build();
 	}
 	
-	private HandlerInput getHandlerInput(String locale) {
+	public static HandlerInput getHandlerInput(String locale) {
 		return HandlerInput.builder()
 				.withRequestEnvelope(getLocaledRequest(locale))
 				.build();

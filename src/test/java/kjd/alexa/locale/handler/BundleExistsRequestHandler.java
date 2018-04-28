@@ -9,14 +9,14 @@ import org.apache.commons.lang3.Validate;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 
-import kjd.alexa.locale.annotation.ResourceBase;
+import kjd.alexa.locale.annotation.LocaleResourceBase;
 
 /**
  * Test - {@link ResourceBundle} "kjd.alexa.locale.handler.annotated" exists.
  * @author kendavidson
  *
  */
-@ResourceBase("messages.annotated")
+@LocaleResourceBase("messages.annotated")
 public class BundleExistsRequestHandler extends LocaledRequestHandler {
 
 	@Override

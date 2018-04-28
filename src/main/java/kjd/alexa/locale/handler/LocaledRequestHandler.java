@@ -11,7 +11,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
-import kjd.alexa.locale.annotation.ResourceBase;
+import kjd.alexa.locale.annotation.LocaleResourceBase;
 import lombok.Getter;
 
 /**
@@ -51,8 +51,8 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 	private Optional<String> initializeResourceFile() {
 		String base = null;
 		
-		if (this.getClass().isAnnotationPresent(ResourceBase.class)) {
-			ResourceBase annotation = this.getClass().getAnnotation(ResourceBase.class);
+		if (this.getClass().isAnnotationPresent(LocaleResourceBase.class)) {
+			LocaleResourceBase annotation = this.getClass().getAnnotation(LocaleResourceBase.class);
 			base = annotation.value();
 		}
 		
@@ -76,6 +76,27 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 		} 
 				
 		return handleRequest(input, rb);
+	}
+	
+	/**
+	 * Looks up the message.  If {@code ResourceBundle} is null or the resource doesn't exist
+	 * then the default message is returned.
+	 * 
+	 * @param rb
+	 * @param message
+	 * @param defaultMessage
+	 * @return
+	 */
+	protected String getMessage(ResourceBundle rb, String message, String defaultMessage) {
+		String output = defaultMessage;	
+		
+		if (rb != null) {
+			try {
+				output = rb.getString(message);
+			} catch (MissingResourceException e) {}
+		}
+		
+		return output;
 	}
 	
 	/**
