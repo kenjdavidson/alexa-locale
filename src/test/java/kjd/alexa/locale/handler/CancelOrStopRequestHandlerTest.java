@@ -12,7 +12,6 @@ import org.junit.runners.JUnit4;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 
