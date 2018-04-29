@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  * @since 1.0.0
  */
-public class JsonUtils {
+public final class JsonUtils {
 	
 	private ObjectMapper mapper;
 	
@@ -42,7 +42,7 @@ public class JsonUtils {
 	}
 	
 	@SuppressWarnings("unused")
-	public static class JsonUtilsBuilder {
+	public static final class JsonUtilsBuilder {
 		private ObjectMapper mapper;
 		
 		private JsonUtilsBuilder(ObjectMapper mapper) {
