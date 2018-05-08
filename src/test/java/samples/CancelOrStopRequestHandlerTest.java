@@ -1,4 +1,4 @@
-package kjd.alexa.locale.handler;
+package samples;
 
 import java.time.OffsetDateTime;
 import java.util.Optional;
@@ -20,7 +20,7 @@ import kjd.alexa.locale.samples.CancelOrStopRequestHandler;
 @RunWith(JUnit4.class)
 public class CancelOrStopRequestHandlerTest {
 	
-	private CancelOrStopRequestHandler help;
+	private CancelOrStopRequestHandler stopCancel;
 	
 	public static IntentRequest getLocaledLaunchRequest(String intent, String locale) {
 		return IntentRequest.builder()
@@ -45,29 +45,29 @@ public class CancelOrStopRequestHandlerTest {
 	
 	@Before
 	public void before() {
-		this.help = new CancelOrStopRequestHandler();
+		this.stopCancel = new CancelOrStopRequestHandler();
 	}
 	
 	@Test
 	public void can_handle_cancelRequest() {
-		HandlerInput input = getHandlerInput("CancelIntent", "en_US");
-		boolean canHandle = help.canHandle(input);
+		HandlerInput input = getHandlerInput("CancelIntent", "en-US");
+		boolean canHandle = stopCancel.canHandle(input);
 		
 		Assert.assertTrue(canHandle);
 	}
 	
 	@Test
 	public void can_handle_stopRequest() {
-		HandlerInput input = getHandlerInput("StopIntent", "en_US");
-		boolean canHandle = help.canHandle(input);
+		HandlerInput input = getHandlerInput("StopIntent", "en-US");
+		boolean canHandle = stopCancel.canHandle(input);
 		
 		Assert.assertTrue(canHandle);
 	}	
 
 	@Test
 	public void valid_english_cancel_request_english_response() {
-		HandlerInput input = getHandlerInput("StopIntent", "en_US");
-		Optional<Response> response = help.handle(input);
+		HandlerInput input = getHandlerInput("StopIntent", "en-US");
+		Optional<Response> response = stopCancel.handle(input);
 		
 		Assert.assertTrue(response.isPresent());
 		Assert.assertTrue(response.get().getOutputSpeech().getType().equals("SSML"));
@@ -76,11 +76,11 @@ public class CancelOrStopRequestHandlerTest {
 	
 	@Test
 	public void valid_french_stop_request_french_response() {
-		HandlerInput input = getHandlerInput("StopIntent", "fr_CA");
-		Optional<Response> response = help.handle(input);
+		HandlerInput input = getHandlerInput("StopIntent", "fr-CA");
+		Optional<Response> response = stopCancel.handle(input);
 		
 		Assert.assertTrue(response.isPresent());
 		Assert.assertTrue(response.get().getOutputSpeech().getType().equals("SSML"));
-		Assert.assertTrue(response.get().getOutputSpeech().toString().contains("Vous venez d''arrÃªter"));
+		Assert.assertTrue(response.get().getOutputSpeech().toString().contains("Vous venez"));
 	}
 }

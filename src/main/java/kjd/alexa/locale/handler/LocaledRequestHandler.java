@@ -1,5 +1,6 @@
 package kjd.alexa.locale.handler;
 
+import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.Optional;
@@ -98,8 +99,9 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
-		String[] localeStrings = input.getRequestEnvelope().getRequest().getLocale().split("_");
-		String requestId = input.getRequestEnvelope().getRequest().getRequestId();		
+		String requestId = input.getRequestEnvelope().getRequest().getRequestId();	
+		
+		String[] localeStrings = input.getRequestEnvelope().getRequest().getLocale().split("-");		
 		logger.debug(String.format("Handling input request %s with RequestEnvelope: %s", 
 				requestId, new String(json.serialize(input.getRequestEnvelope()))));
 		
@@ -121,8 +123,18 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 	}
 	
 	/**
-	 * Looks up the message.  If {@code ResourceBundle} is null or the resource doesn't exist
-	 * then the default message is returned.
+	 * Looks up the message.
+	 * 
+	 * @param rb
+	 * @param message
+	 * @return
+	 */
+	protected String getMesage(ResourceBundle rb, String message) {
+		return getMessage(rb, message, new Object[] {}, null);
+	}
+	
+	/**
+	 * Looks up the message.
 	 * 
 	 * @param rb
 	 * @param message
@@ -130,12 +142,26 @@ public abstract class LocaledRequestHandler implements RequestHandler {
 	 * @return
 	 */
 	protected String getMessage(ResourceBundle rb, String message, String defaultMessage) {
+		return getMessage(rb, message, new Object[] {}, defaultMessage);
+	}
+	
+	/**
+	 * Looks up the message.  If {@code ResourceBundle} is null or the resource doesn't exist
+	 * then the default message is returned.
+	 * 
+	 * @param rb
+	 * @param message
+	 * @param args
+	 * @param defaultMessage
+	 * @return
+	 */
+	protected String getMessage(ResourceBundle rb, String message, Object[] args, String defaultMessage) {
 		String output = defaultMessage;	
 		
 		if (rb != null) {
 			try {
-				output = rb.getString(message);
-			} catch (MissingResourceException e) {}
+				output = MessageFormat.format(rb.getString(message), args);
+			} catch (MissingResourceException e) { }
 		}
 		
 		return output;

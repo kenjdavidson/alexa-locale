@@ -1,4 +1,4 @@
-package kjd.alexa.locale.handler;
+package samples;
 
 import java.util.Optional;
 
@@ -46,7 +46,7 @@ public class LaunchRequestHandlerTest {
 	
 	@Test
 	public void can_handle_launchRequest() {
-		HandlerInput input = getHandlerInput("en_US");
+		HandlerInput input = getHandlerInput("en-US");
 		boolean canHandle = launch.canHandle(input);
 		
 		Assert.assertTrue(canHandle);
@@ -54,7 +54,7 @@ public class LaunchRequestHandlerTest {
 
 	@Test
 	public void valid_english_request_english_response() {
-		HandlerInput input = getHandlerInput("en_US");
+		HandlerInput input = getHandlerInput("en-US");
 		Optional<Response> response = launch.handle(input);
 		
 		Assert.assertTrue(response.isPresent());
@@ -64,7 +64,7 @@ public class LaunchRequestHandlerTest {
 	
 	@Test
 	public void valid_french_request_french_response() {
-		HandlerInput input = getHandlerInput("fr_CA");
+		HandlerInput input = getHandlerInput("fr-CA");
 		Optional<Response> response = launch.handle(input);
 		
 		Assert.assertTrue(response.isPresent());

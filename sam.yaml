@@ -7,4 +7,4 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Runtime: java8
-      Handler: kjd.alexa.locale::AlexaLocaleStreamHandler
+      Handler: kjd.alexa.locale.AlexaLocaleStreamHandler::handleRequest

@@ -1,0 +1,20 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : [ "AWS::Serverless-2016-10-31" ],
+  "Description" : "Simple lambda testing Locale resources",
+  "Resources" : {
+    "AlexaLocaleStreamHandler" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties" : {
+        "Role" : null,
+        "MemorySize" : 512,
+        "Runtime" : "java8",
+        "Description" : null,
+        "Policies" : [ ],
+        "CodeUri" : "target/localed-handler-0.9.2-SNAPSHOT.jar",
+        "Timeout" : 300,
+        "Handler" : "kjd.alexa.locale.AlexaLocaleStreamHandler::handleRequest"
+      }
+    }
+  }
+}

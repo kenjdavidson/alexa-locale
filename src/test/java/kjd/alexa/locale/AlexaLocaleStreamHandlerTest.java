@@ -20,7 +20,7 @@ import com.amazon.ask.model.Session;
 import com.amazon.ask.model.SessionEndedRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kjd.alexa.locale.handler.LaunchRequestHandlerTest;
+import samples.LaunchRequestHandlerTest;
 
 /**
  * For more testing details see the following:
@@ -70,7 +70,7 @@ public class AlexaLocaleStreamHandlerTest {
 	
 	@Test
 	public void testEnglishRequestEnvelope() throws IOException {
-		RequestEnvelope englishLaunch = LaunchRequestHandlerTest.getLocaledRequest("en_CA");
+		RequestEnvelope englishLaunch = LaunchRequestHandlerTest.getLocaledRequest("en-CA");
 		String output = getHandlerOutput(englishLaunch);
 		
 		Validate.isTrue(output.contains("Welcome"));
@@ -78,7 +78,7 @@ public class AlexaLocaleStreamHandlerTest {
 	
 	@Test
 	public void testFrenchRequestEnvelope() throws IOException {
-		RequestEnvelope englishLaunch = LaunchRequestHandlerTest.getLocaledRequest("fr_CA");
+		RequestEnvelope englishLaunch = LaunchRequestHandlerTest.getLocaledRequest("fr-CA");
 		String output = getHandlerOutput(englishLaunch);
 		
 		Validate.isTrue(output.contains("Bienvenue"));

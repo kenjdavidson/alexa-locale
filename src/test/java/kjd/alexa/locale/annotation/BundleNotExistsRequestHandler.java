@@ -1,4 +1,4 @@
-package kjd.alexa.locale.handler;
+package kjd.alexa.locale.annotation;
 
 import java.util.MissingResourceException;
 import java.util.Optional;
@@ -10,6 +10,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 
 import kjd.alexa.locale.annotation.LocaleResourceBase;
+import kjd.alexa.locale.handler.LocaledRequestHandler;
 
 /**
  * Test - {@link ResourceBundle} "annotated" doesn't exist.

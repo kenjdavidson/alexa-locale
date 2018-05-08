@@ -15,6 +15,9 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 
+import kjd.alexa.locale.annotation.BundleExistsRequestHandler;
+import kjd.alexa.locale.annotation.BundleNotExistsRequestHandler;
+
 @RunWith(JUnit4.class)
 public class LocaledRequestHandlerTest {
 
@@ -42,7 +45,7 @@ public class LocaledRequestHandlerTest {
 	@Test
 	public void annotated_request_handler_finds_bundle() {
 		BundleExistsRequestHandler handler = new BundleExistsRequestHandler();
-		HandlerInput input = getHandlerInput("en_CA");
+		HandlerInput input = getHandlerInput("en-CA");
 		
 		boolean canHandle = handler.canHandle(input);
 		Validate.isTrue(canHandle);
@@ -55,7 +58,7 @@ public class LocaledRequestHandlerTest {
 	@Test
 	public void annotated_request_handler_finds_bundle_fr() {
 		BundleExistsRequestHandler handler = new BundleExistsRequestHandler();
-		HandlerInput input = getHandlerInput("fr_CA");
+		HandlerInput input = getHandlerInput("fr-CA");
 		
 		boolean canHandle = handler.canHandle(input);
 		Validate.isTrue(canHandle);
@@ -68,7 +71,7 @@ public class LocaledRequestHandlerTest {
 	@Test
 	public void annotated_request_handler_no_bundle() {
 		BundleNotExistsRequestHandler handler = new BundleNotExistsRequestHandler();
-		HandlerInput input = getHandlerInput("en_CA");
+		HandlerInput input = getHandlerInput("en-CA");
 		
 		boolean canHandle = handler.canHandle(input);
 		Validate.isTrue(canHandle);
