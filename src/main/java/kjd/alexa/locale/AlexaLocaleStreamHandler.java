@@ -4,7 +4,7 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.builder.CustomSkillBuilder;
 
-import kjd.alexa.locale.samples.LaunchRequestHandler;
+import kjd.alexa.locale.handler.intents.LaunchRequestHandler;
 
 public class AlexaLocaleStreamHandler extends SkillStreamHandler {
 

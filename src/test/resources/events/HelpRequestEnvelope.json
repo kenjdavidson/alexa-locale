@@ -41,8 +41,37 @@
         }
     },
     "request": {
-        "type": "LaunchRequest",
+        "type": "IntentRequest",
         "requestId": "LQnrJVgzR3pkBDWCyfik1eYhmj16eI8F",
-        "locale": "en-CA"
+        "locale": "en-CA",
+        "intent": {
+            "name": "AMAZON.HelpIntent",
+            "confirmationStatus": "NONE",
+            "slots": {
+                "SlotName": {
+                    "name": "string",
+                    "value": "string",
+                    "confirmationStatus": "string",
+                    "resolutions": {
+                        "resolutionsPerAuthority": [
+                            {
+                                "authority": "string",
+                                "status": {
+                                    "code": "string"
+                                },
+                                "values": [
+                                    {
+                                        "value": {
+                                            "name": "string",
+                                            "id": "string"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        }
     }
 }
