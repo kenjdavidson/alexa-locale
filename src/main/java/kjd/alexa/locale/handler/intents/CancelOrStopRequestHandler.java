@@ -1,5 +1,6 @@
 package kjd.alexa.locale.handler.intents;
 
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -18,12 +19,12 @@ public class CancelOrStopRequestHandler extends LocaledRequestHandler {
 	}
 
 	@Override
-	protected Optional<Response> handleRequest(HandlerInput input, ResourceBundle rb) {
-		String type = input.matches(Predicates.intentName("AMAZON.StopIntent")) ? "stop" : "cancel";
-		String speech = getMessage(rb, 
+	protected Optional<Response> handleRequest(HandlerInput input, Locale locale) {
+		String type = input.matches(Predicates.intentName("AMAZON.StopIntent")) ? "StopRequest" : "CancelRequest";
+		String speech = getMessage(locale, 
 				type + ".text", 
 				"Stopping or cancelling the locale skill.");
-		String title = getMessage(rb, 
+		String title = getMessage(locale, 
 				type + ".title", 
 				"Cancel/Stop");
 		return input.getResponseBuilder()

@@ -1,15 +1,12 @@
 package kjd.alexa.locale.annotation;
 
-import java.util.MissingResourceException;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import org.apache.commons.lang3.Validate;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 
-import kjd.alexa.locale.annotation.LocaleResourceBase;
 import kjd.alexa.locale.handler.LocaledRequestHandler;
 
 /**
@@ -26,29 +23,13 @@ public class BundleExistsRequestHandler extends LocaledRequestHandler {
 	}
 
 	@Override
-	protected Optional<Response> handleRequest(HandlerInput input, ResourceBundle rb) {
-		String speech = (rb == null)
-				? getDefaultSpeech(input) 
-				: getLocaleSpeech(input, rb);
+	protected Optional<Response> handleRequest(HandlerInput input, Locale locale) {
+		String speech = getMessage(locale, "hello", "Resource not found");
 		return input.getResponseBuilder()
 				.withSpeech(speech)
 				.withReprompt(speech)
 				.withSimpleCard("Locale Testing", speech)
 				.build();
-	}
-
-	private String getDefaultSpeech(HandlerInput input) {
-		return "Resource not found.";
-	}
-	
-	private String getLocaleSpeech(HandlerInput input, ResourceBundle rb) {
-		Validate.notNull(rb);
-		
-		try {
-			return rb.getString("hello");
-		} catch (MissingResourceException ignored) { }
-		
-		return getDefaultSpeech(input);
 	}	
 	
 }

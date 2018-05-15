@@ -1,5 +1,6 @@
 package kjd.alexa.locale.handler.intents;
 
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -30,12 +31,12 @@ public class LaunchRequestHandler extends LocaledRequestHandler {
 	}
 
 	@Override
-	protected Optional<Response> handleRequest(HandlerInput input, ResourceBundle rb) {
-		String speech = getMessage(rb, 
-				"launch.text", 
+	protected Optional<Response> handleRequest(HandlerInput input, Locale locale) {
+		String speech = getMessage(locale, 
+				"LaunchRequest.text", 
 				"Welcome to the Alexa locale skill.");
-		String title = getMessage(rb,
-				"launch.title",
+		String title = getMessage(locale,
+				"LaunchRequest.title",
 				"Welcome");
 		return input.getResponseBuilder()
 				.withSpeech(speech)

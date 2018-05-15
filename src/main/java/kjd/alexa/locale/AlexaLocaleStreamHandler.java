@@ -15,9 +15,8 @@ public class AlexaLocaleStreamHandler extends SkillStreamHandler {
 	
 	private static Skill getSkill() {
 		return new CustomSkillBuilder()
-				.addRequestHandler(
-						new LaunchRequestHandler())
 				.withSkillId(System.getenv(ENV_APP_ID))
+				.addRequestHandler(new LaunchRequestHandler())
 				.build();
 	}
 	

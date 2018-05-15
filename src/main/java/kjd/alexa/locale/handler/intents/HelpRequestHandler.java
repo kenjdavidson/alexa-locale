@@ -1,5 +1,6 @@
 package kjd.alexa.locale.handler.intents;
 
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -17,12 +18,12 @@ public class HelpRequestHandler extends LocaledRequestHandler {
 	}
 
 	@Override
-	protected Optional<Response> handleRequest(HandlerInput input, ResourceBundle rb) {
-		String speech = getMessage(rb, 
-				"help.text", 
+	protected Optional<Response> handleRequest(HandlerInput input, Locale locale) {
+		String speech = getMessage(locale, 
+				"HelpRequest.text", 
 				"No help information in resources.");
-		String title = getMessage(rb, 
-				"help.title", 
+		String title = getMessage(locale, 
+				"HelpRequest.title", 
 				"Help");
 		return input.getResponseBuilder()
 				.withSpeech(speech)

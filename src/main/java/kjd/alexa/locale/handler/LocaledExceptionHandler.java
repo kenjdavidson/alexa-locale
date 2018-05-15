@@ -5,6 +5,7 @@ import java.util.MissingResourceException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.amazon.ask.dispatcher.exception.ExceptionHandler;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
@@ -12,7 +13,7 @@ import com.amazon.ask.model.Response;
 import lombok.extern.log4j.Log4j;
 
 /**
- * Base {@link RequestHandler} used to provided {@link Locale} based {@link ResourceBundle}
+ * Base {@link ExceptionHandler} used to provided {@link Locale} based {@link ResourceBundle}
  * customization in {@link Response}(s).  {@link ResourceBundle}(s) are not required, but default
  * values should be provided, as no {@link MissingResourceException} is thrown.
  * <p> 
@@ -29,14 +30,14 @@ import lombok.extern.log4j.Log4j;
  * An basic extending class only needs to implement the {@link #handleRequest(HandlerInput, ResourceBundle)}
  * method:
  * <pre><code>
- * 	protected Optional<Response> handleRequest(HandlerInput input, Locale locale) {
+ * 	protected Optional<Response> handleRequest(HandlerInput input, Throwable throwable, Locale locale) {
  * 		String speech = getMessage(locale, 
- * 			"welcome", 
- * 			"Welcome to the Alexa locale skill.");
+ * 			"exception.text", 
+ * 			throwable.getMessage());
  * 		return input.getResponseBuilder()
  * 			.withSpeech(speech)
  * 			.withReprompt(speech)
- * 			.withSimpleCard("Hello", speech)
+ * 			.withSimpleCard("Error", speech)
  * 			.build();
  * 	}
  * </code></pre>
@@ -44,8 +45,8 @@ import lombok.extern.log4j.Log4j;
  * @author kendavidson
  *
  */
-public abstract class LocaledRequestHandler extends LocaledHandler
-		implements RequestHandler {
+public abstract class LocaledExceptionHandler extends LocaledHandler 
+		implements ExceptionHandler {
 
 	/**
 	 * Handles the request by loading the {@link ResourceBundle} using the specified
@@ -55,18 +56,17 @@ public abstract class LocaledRequestHandler extends LocaledHandler
 	 * @return 
 	 */
 	@Override
-	public Optional<Response> handle(HandlerInput input) {
-		String requestId = input.getRequestEnvelope().getRequest().getRequestId();	
-		
+	public Optional<Response> handle(HandlerInput input, Throwable throwable) {
+
 		String[] localeStrings = input.getRequestEnvelope().getRequest().getLocale().split("-");		
-		getLogger().debug(String.format("Handling input request %s with RequestEnvelope: %s", 
-				requestId, input.getRequestEnvelope().toString()));
+		getLogger().debug(String.format("Handling Exception %s caused from RequestEnvelope: %s", 
+				throwable.getClass().getSimpleName(), input.getRequestEnvelope().toString()));
 		
 		Locale locale = new Locale(localeStrings[0], localeStrings[1]);
-		getLogger().debug(String.format("Handling input request %s with Locale %s",
-				requestId, locale.toString())); 
+		getLogger().debug(String.format("Handling exception %s with Locale %s",
+				throwable.getClass().getSimpleName(), locale.toString())); 
 				
-		return handleRequest(input, locale);
+		return handleRequest(input, throwable, locale);
 	}
 	
 	/**
@@ -75,9 +75,10 @@ public abstract class LocaledRequestHandler extends LocaledHandler
 	 * {@link Response}.
 	 * 
 	 * @param intput
-	 * @param rb
+	 * @param locale
+	 * @param throwable
 	 * @return
 	 */
-	protected abstract Optional<Response> handleRequest(HandlerInput input, Locale locale);	
+	protected abstract Optional<Response> handleRequest(HandlerInput input, Throwable throwable, Locale locale);	
 	
 }
