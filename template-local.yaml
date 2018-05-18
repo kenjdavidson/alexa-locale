@@ -8,5 +8,5 @@ Resources:
     Properties:
       Runtime: java8
       Handler: kjd.alexa.locale.AlexaLocaleStreamHandler::handleRequest
-      CodeUri: ./target/localed-handler-0.9.0-SNAPSHOT.jar
+      CodeUri: ./target/localed-handler-0.1.0-SNAPSHOT.jar
       Timeout: 300
