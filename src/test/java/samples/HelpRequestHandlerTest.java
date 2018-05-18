@@ -16,32 +16,12 @@ import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 
 import kjd.alexa.locale.handler.intents.HelpRequestHandler;
+import kjd.alexa.util.HandlerUtilities;
 
 @RunWith(JUnit4.class)
 public class HelpRequestHandlerTest {
 	
 	private HelpRequestHandler help;
-	
-	public static IntentRequest getLocaledLaunchRequest(String locale) {
-		return IntentRequest.builder()
-				.withRequestId("requestId")
-				.withLocale(locale)
-				.withTimestamp(OffsetDateTime.now())
-				.withIntent(Intent.builder().withName("AMAZON.HelpIntent").build())
-				.build();
-	}
-	
-	public static RequestEnvelope getLocaledRequest(String locale) {
-		return RequestEnvelope.builder()
-				.withRequest(getLocaledLaunchRequest(locale))
-				.build();
-	}
-	
-	public static HandlerInput getHandlerInput(String locale) {
-		return HandlerInput.builder()
-				.withRequestEnvelope(getLocaledRequest(locale))
-				.build();
-	}
 	
 	@Before
 	public void before() {
@@ -50,7 +30,7 @@ public class HelpRequestHandlerTest {
 	
 	@Test
 	public void can_handle_launchRequest() {
-		HandlerInput input = getHandlerInput("en-US");
+		HandlerInput input = HandlerUtilities.getHandlerInput("AMAZON.HelpIntent", "en-US");
 		boolean canHandle = help.canHandle(input);
 		
 		Assert.assertTrue(canHandle);
@@ -58,7 +38,7 @@ public class HelpRequestHandlerTest {
 
 	@Test
 	public void valid_english_request_english_response() {
-		HandlerInput input = getHandlerInput("en-US");
+		HandlerInput input = HandlerUtilities.getHandlerInput("AMAZON.HelpIntent", "en-US");
 		Optional<Response> response = help.handle(input);
 		
 		Assert.assertTrue(response.isPresent());
@@ -68,7 +48,7 @@ public class HelpRequestHandlerTest {
 	
 	@Test
 	public void valid_french_request_french_response() {
-		HandlerInput input = getHandlerInput("fr-CA");
+		HandlerInput input = HandlerUtilities.getHandlerInput("AMAZON.HelpIntent", "fr-CA");
 		Optional<Response> response = help.handle(input);
 		
 		Assert.assertTrue(response.isPresent());

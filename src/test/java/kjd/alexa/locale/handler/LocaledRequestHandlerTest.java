@@ -43,7 +43,7 @@ public class LocaledRequestHandlerTest {
 	}
 	
 	@Test
-	public void annotated_request_handler_finds_bundle() {
+	public void shouldReturnEnglishText_whenResourceFound() {
 		BundleExistsRequestHandler handler = new BundleExistsRequestHandler();
 		HandlerInput input = getHandlerInput("en-CA");
 		
@@ -56,7 +56,7 @@ public class LocaledRequestHandlerTest {
 	}
 	
 	@Test
-	public void annotated_request_handler_finds_bundle_fr() {
+	public void shouldReturnFrenchText_whenResourceFound() {
 		BundleExistsRequestHandler handler = new BundleExistsRequestHandler();
 		HandlerInput input = getHandlerInput("fr-CA");
 		
@@ -69,7 +69,7 @@ public class LocaledRequestHandlerTest {
 	}	
 	
 	@Test
-	public void annotated_request_handler_no_bundle() {
+	public void shouldReturnResourceNotFound_whenNoResource() {
 		BundleNotExistsRequestHandler handler = new BundleNotExistsRequestHandler();
 		HandlerInput input = getHandlerInput("en-CA");
 		

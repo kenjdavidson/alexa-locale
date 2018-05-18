@@ -2,7 +2,6 @@ package kjd.alexa.locale.handler.intents;
 
 import java.util.Locale;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;

@@ -69,7 +69,7 @@ public class AlexaLocaleStreamHandlerTest {
 	}
 	
 	@Test
-	public void testEnglishRequestEnvelope() throws IOException {
+	public void shouldReturnEnglishWelcome_whenEnglishLocale() throws IOException {
 		RequestEnvelope englishLaunch = LaunchRequestHandlerTest.getLocaledRequest("en-CA");
 		String output = getHandlerOutput(englishLaunch);
 		
@@ -77,7 +77,7 @@ public class AlexaLocaleStreamHandlerTest {
 	}
 	
 	@Test
-	public void testFrenchRequestEnvelope() throws IOException {
+	public void shouldReturnFrenchWelcome_whenFrenchLocale() throws IOException {
 		RequestEnvelope englishLaunch = LaunchRequestHandlerTest.getLocaledRequest("fr-CA");
 		String output = getHandlerOutput(englishLaunch);
 		
