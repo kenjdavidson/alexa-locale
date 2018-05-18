@@ -1,6 +1,5 @@
 package samples;
 
-import java.time.OffsetDateTime;
 import java.util.Optional;
 
 import org.junit.Assert;
@@ -10,9 +9,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.Intent;
-import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 
 import kjd.alexa.locale.handler.intents.HelpRequestHandler;
