@@ -9,11 +9,13 @@ values.
 Option 1) Clone the git
 Option 2) Include from Jitpack
 
+'''
 <dependency>
   <groupId>com.github.kenjdavidson</groupId>
   <artifactId>alexa-locale</artifactId>
   <version>0.9.1</version>
 </dependency>
+'''
 
 ## Usage
 
