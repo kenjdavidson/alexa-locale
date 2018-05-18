@@ -7,6 +7,7 @@ values.
 ## Installation
 
 Option 1) Clone the git
+
 Option 2) Include from Jitpack
 
 ```
