@@ -16,7 +16,7 @@ Option 2) Include from Jitpack
 <dependency>
   <groupId>com.github.kenjdavidson</groupId>
   <artifactId>alexa-locale</artifactId>
-  <version>0.9.1</version>
+  <version>${alexa-locale.version}</version>
 </dependency>
 ```
 
@@ -30,9 +30,16 @@ Just makes editing `*.properies` files a bit easier.
 
 ## Usage
 
-Two reasons for using this project: to make it better or to user within your own project.
+If you want to reduce a lot of the Skill boilerplate or provide methods in which users can edit respones - by moving text to properties files they can be externalized to a set of .properties or database tables using a custom ResourceBundle.Control.  
+
+```
+
+```
 
 ### Enchancement
 
+N/A
+
 ### Including 
 
+N/A
