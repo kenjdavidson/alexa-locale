@@ -1,10 +1,10 @@
 .settings
-.DS_Store
+**/.DS_Store
 .classpath
 .project
 
 sam/
-sam/*
+sam/**
 target/
-target/*
+target/**
 
