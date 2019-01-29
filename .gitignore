@@ -1,8 +1,9 @@
 .settings
-**/.DS_Store
 .classpath
 .project
+.factorypath
 
+**/.DS_Store
 sam/
 sam/**
 target/
